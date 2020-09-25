@@ -13,11 +13,17 @@ export default function HomePage() {
     dispatch(fetchProducts);
   }, [dispatch]);
 
+  function compare_price(product1, product2) {
+    return product1.price - product2.price;
+  }
+
+  const sortedProducts = products.sort(compare_price);
+
   return (
     <div>
       <h1>Welcome to our fancy webshop!</h1>
 
-      {products.map((product) => {
+      {sortedProducts.map((product) => {
         return (
           <div key={product.id}>
             <h3>{product.name}</h3>
