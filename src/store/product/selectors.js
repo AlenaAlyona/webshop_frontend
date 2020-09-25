@@ -1,4 +1,4 @@
 export function selectProduct(reduxState) {
-  console.log("STATE", reduxState);
-  return reduxState;
+  // console.log("STATE", reduxState);
+  return reduxState.product.products;
 }

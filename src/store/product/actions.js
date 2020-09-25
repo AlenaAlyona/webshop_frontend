@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = `http://localhost:4000/`;
+const API_URL = `http://localhost:4000`;
 
 export function startLoading() {
   return {
@@ -12,7 +12,7 @@ export function startLoading() {
 
 export function productsFetched(data) {
   return {
-    type: "feed/postsFetched",
+    type: "products/productsFetched",
     payload: data,
   };
 }
@@ -23,6 +23,8 @@ export async function fetchProducts(dispatch, getState) {
   dispatch(startLoading());
 
   const res = await axios.get(`${API_URL}/products`);
-
-  dispatch(productsFetched(res));
+  // console.log("RES", res);
+  const products = res.data;
+  console.log("RESPONSE", products);
+  dispatch(productsFetched(products));
 }
