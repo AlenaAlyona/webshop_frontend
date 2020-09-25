@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchProducts } from "../store/product/actions";
@@ -8,6 +8,7 @@ export default function HomePage() {
   const products = useSelector(selectProduct);
   console.log("selected products", products);
   const dispatch = useDispatch();
+  const [filter, set_filter] = useState();
 
   useEffect(() => {
     dispatch(fetchProducts);
@@ -21,8 +22,6 @@ export default function HomePage() {
 
   return (
     <div>
-      <h1>Welcome to our fancy webshop!</h1>
-
       {sortedProducts.map((product) => {
         return (
           <div key={product.id}>
@@ -30,6 +29,9 @@ export default function HomePage() {
             {/* <Link to={`/Post/${product.id}`}>See product details</Link> */}
             <p>€ {product.price}</p>
             <p>{product.description}</p>
+            <button onClick={(e) => console.log(product.id)}>
+              Shopping Cart
+            </button>
           </div>
         );
       })}
